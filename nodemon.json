@@ -1,0 +1,6 @@
+{
+  "env": {
+    "MONGO_ATLAS_PW": "strongpower5",
+    "JWT_KEY": "tajna_treba_da_je_duza"
+  }
+}

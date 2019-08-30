@@ -1,0 +1,25 @@
+<mat-spinner *ngIf='isLoading'></mat-spinner>
+<mat-accordion multi='true' *ngIf='postovi.length > 0 && !isLoading'>
+  <mat-expansion-panel *ngFor='let post of postovi'>
+    <mat-expansion-panel-header>
+      {{ post.naslov }}
+    </mat-expansion-panel-header>
+    <div class='post-image'>
+      <img [src]="post.imagePath" [alt]="post.naslov">
+    </div>
+      <p>{{ post.opis }}</p>
+    <mat-action-row *ngIf='userIsAuthenticated && userId == post.creator'>
+      <a mat-button color='primary' [routerLink]="['/edit', post.id]">Edit</a>
+      <button mat-button color='danger' (click)='onDelete(post.id)'>Delete</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<mat-paginator
+  [length]='totalPosts'
+  [pageSize]='postsPerPage'
+  [pageSizeOptions]='pageSizeOptions'
+  (page)='onChangePage($event)'
+  *ngIf='postovi.length > 0'></mat-paginator>
+
+<p class='mat-body-1 prazni-postovi' *ngIf='postovi.length <= 0 && !isLoading'>Nema postova!</p>

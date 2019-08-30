@@ -1,0 +1,24 @@
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.razmak {
+  flex: 1 1 auto;
+}
+
+ul {
+  display: flex;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+mat-toolbar {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+}

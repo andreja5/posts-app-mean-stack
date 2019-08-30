@@ -1,0 +1,34 @@
+<mat-card>
+  <mat-spinner *ngIf='isLoading'></mat-spinner>
+  <form [formGroup]='form' *ngIf='!isLoading' (submit)='sacuvajPost()'>
+    <mat-form-field>
+      <input 
+        matInput
+        type='text'
+        formControlName='naslov'
+        placeholder="Naslov Posta">
+        <mat-error *ngIf="form.get('naslov').invalid">Unesite naslov...</mat-error>
+      </mat-form-field>
+      <div>
+        <button mat-stroked-button type='button' (click)='filePicker.click()'>Izaberi sliku</button>
+        <input type="file" #filePicker (change)='onImagePick($event)'>
+      </div>
+      <div class='imagePreview' *ngIf="imagePreview !== '' && imagePreview && form.get('slika').valid">
+        <img [src]="imagePreview" [alt]="form.value.naslov">
+      </div>
+    <mat-form-field>
+      <textarea
+        matInput
+        type='text'
+        formControlName='opis'
+        rows='10'
+        placeholder="Opis Posta"></textarea>
+        <mat-error *ngIf="form.get('opis').invalid">Unesite opis...</mat-error>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color='accent'
+      type='submit'>Add Post</button>
+  </form>
+</mat-card>
+<hr>
